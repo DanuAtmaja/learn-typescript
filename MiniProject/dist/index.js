@@ -2,6 +2,7 @@
 const btn = document.getElementById("btn"); //put exclamation(!) at the end, means that we make sure that this would not null
 const input = document.getElementById("todoinput");
 const form = document.querySelector("form");
+const list = document.getElementById("todolist");
 // (<HTMLInputElement>input).value // is not work on jsx/tsx
 // // btn.addEventListener("click", function() {
 // //   alert("CLICKED!");
@@ -15,6 +16,13 @@ const form = document.querySelector("form");
 // });
 function handleSubmit(e) {
     e.preventDefault();
-    console.log("SUBMITTED");
+    const newTodoText = input.value;
+    const newLi = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    newLi.append(newTodoText);
+    list.append(newLi);
+    newLi.append(checkbox);
+    input.value = "";
 }
 form.addEventListener("submit", handleSubmit);
