@@ -2,14 +2,19 @@ interface Todo {
   text: string;
   completed: boolean;
 }
-
-const todos: Todo[] = [];
-
 const btn = document.getElementById("btn")! as HTMLButtonElement; //put exclamation(!) at the end, means that we make sure that this would not null
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.querySelector("form")!;
 const list = document.getElementById("todolist")!;
 
+const todos: Todo[] = readTodos();
+todos.forEach(createTodo)
+
+function readTodos(): Todo[] {
+  const todosJSON = localStorage.getItem("todos");
+  if (todosJSON === null) return [];
+  return JSON.parse(todosJSON);
+}
 
 // (<HTMLInputElement>input).value // is not work on jsx/tsx
 
@@ -35,6 +40,8 @@ function handleSubmit (e: SubmitEvent) {
   };
   createTodo(newTodo);
   todos.push(newTodo);
+
+  localStorage.setItem("todos", JSON.stringify(todos));
   input.value = "";
 }
 
