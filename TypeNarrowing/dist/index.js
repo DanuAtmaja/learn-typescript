@@ -76,3 +76,28 @@ function makeNoise(animal) {
         return "Bark";
     }
 }
+function getFarmAnimalSound(animal) {
+    switch (animal.kind) {
+        case ("pig"):
+            return "Oink!";
+        case ("cow"):
+            return "Mooo!";
+        case ("rooster"):
+            return "Cockadoodledledoo!";
+        case ("sheep"):
+            return "Baa!";
+        default:
+            //         We should never make it here, if we handle all case correctly
+            //         const shouldNeverGetHere: never = animal
+            //         return shouldNeverGetHere;
+            const _exhaustiveCheck = animal;
+            return _exhaustiveCheck;
+    }
+}
+const stevie = {
+    name: "Steview Chciks",
+    weight: 2,
+    age: 1.5,
+    kind: "rooster"
+};
+console.log(stevie);
